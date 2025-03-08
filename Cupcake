@@ -1,0 +1,22 @@
+Describe ("Cupcake ispum")
+cy.visit("https://cupcakeipsum.com/");
+it("Verify Cupcake Genarate functionality", => {
+//I see "Cupcake Ipsum - Sugar-coated Lorem Ipsum Generator"
+cy.get('h1[id="logo"]').should("be.visible");
+//I see "Paragraphs" has "5" filled in
+cy.get('for="number_of_paragraphs"').should("be.visible");
+//I select "Short" radio button
+cy.get('input[name="lengthOfParagraph"]').contains("short").click();
+//I check off 'Start with "Cupcake ipsum dolor sit amet"'
+cy.get('input[name="startsWithCupcakeIpsum"]').click();
+//I see 1 instance of "Cupcake ipsum dolor sit amet" on the page
+cy.get('div[class="result-body"]').should("be.visible");
+//I do not see a "Copy to Clipboard" button
+cy.get('button[id="copy_button"]').should("not.be.visible");
+//I click "Generate"
+cy.get('button[id="generate_button"]').click();
+//I see 2 instances of "Cupcake ipsum dolor sit amet" on the page
+cy.get('div[class="result-body"]').should("be.visible");
+
+});
+
