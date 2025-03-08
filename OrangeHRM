@@ -1,0 +1,32 @@
+//d. Navigate to https://opensource-demo.orangehrmlive.com:
+
+Describe ("Orange HRM Login")
+cy.visit("https://opensource-demo.orangehrmlive.com");
+it("Verify Login functionality", => {
+//Login with Credentials
+cy.get('input[name="username"]').type("Admin");
+cy.get('input[type="password"]').type("admin123");
+cy.get('button[type="submit"]').click();
+//I am directed to Dashboard.
+cy.get('h6[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should(be.visible);
+//I click on Admin button on Left
+cy.get('span[class="oxd-text oxd-text--span oxd-main-menu-item--name"]').eq(1).click();
+//I see Records Found on page
+cy.get('div[class="orangehrm-horizontal-padding orangehrm-vertical-padding"]').should(be.visible);
+//Print the result displayed for Records Found.
+cy.get('div[class="oxd-table-cell oxd-padding-cell"]').eq[1].should(be.visible);
+console.log("results of records");
+//I click on the Profile displayed on Right top corner of Screen
+cy.get('[class="oxd-userdropdown-name"]');
+//I see About, Support, Change Password, Logout options.
+cy.get('[class="oxd-userdropdown-link"]').eq[0].should(be.visible);
+cy.get('[class="oxd-userdropdown-link"]').eq[1].should(be.visible);
+
+cy.get('[class="oxd-userdropdown-link"]').eq[2].should(be.visible);
+//I click on Logout.
+cy.get('[class="oxd-userdropdown-link"]').eq[2].click()
+//I am logged out and directed to the login Page.
+cy.get('h5[class="oxd-text oxd-text--h5 orangehrm-login-title"]');
+
+});
+
